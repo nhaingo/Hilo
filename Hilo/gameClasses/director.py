@@ -106,11 +106,11 @@ class Director:
             self (Director): an instance of Director """
  
         if self.value > self.next_value and self.choice == 'h':
-            self.points = self.points - 75
-            return
-
-        if self.value < self.next_value and self.choice == 'h':
             self.points = self.points + 100
-            return
+            return True
+
+        if self.value < self.next_value and self.choice == 'l':
+            self.points = self.points - 75
+            return True
 
         '''display_output: displays new card, displays updated points.'''
