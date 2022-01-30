@@ -114,3 +114,20 @@ class Director:
             return True
 
         '''display_output: displays new card, displays updated points.'''
+        """Arguments: 
+            self (Director): an instance of Director """
+        
+
+        print(f'Your score is: {self.points}')
+        play_again = input('Play again? [y/n] ').lower()
+        while play_again != "y" and play_again != "n":
+            play_again = input('Invalid choice. Play again? [y/n] ').lower()
+        print('')
+        if play_again == 'y':
+            self.is_playing = True
+            self.value = self.next_value
+            return
+        
+        if play_again == 'n':
+            self.is_playing = False
+            return
