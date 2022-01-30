@@ -19,7 +19,7 @@ class Card:
         """Constructs a new instance of Die with a value attribute.
         
         Args:
-            self (Die): An instance of Die."""
+            self (Card): An instance of Die."""
 
         self.value = 0
 
@@ -28,7 +28,7 @@ class Card:
         """Generates a new random value.
         
         Args:
-            self (Die): An instance of Die."""
+            self (Card): An instance of Die."""
 
         self.value = random.randint(1, 13)
         return self.value

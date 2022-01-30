@@ -50,6 +50,7 @@ class Director:
         self.points = self.initial_stake
         self.is_playing = True
         self.choice = ''
+        self.bonus = 0.20 #20% of the total points
         
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -62,6 +63,7 @@ class Director:
             self.get_choice()
             self.display_next_card()
             self.calculate_points()
+            #self.bonus_points()
             self.display_output()
         
         print('Game over. Thanks for playing.')
@@ -117,7 +119,7 @@ class Director:
         """Arguments: 
             self (Director): an instance of Director """
         
-
+    def display_output(self):
         print(f'Your score is: {self.points}')
         play_again = input('Play again? [y/n] ').lower()
         while play_again != "y" and play_again != "n":
@@ -131,3 +133,12 @@ class Director:
         if play_again == 'n':
             self.is_playing = False
             return
+    #def bonus_points(self):
+        '''Add 20 percents bonus points when actual points is equivalent or equal to 1000
+        Arguments:
+            self(Director): an instance of Director
+        
+            '''
+        #if (self.points >= 1000):
+           # print ("You reached over 1000 points, get additional 20 percents on each win")
+           # self.points = 
