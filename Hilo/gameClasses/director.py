@@ -15,14 +15,7 @@ class Director:
         is_playing: a boolean variable. True means still playing, False means not playing.
         
         choice: If the player has chosen the next card to be higher or lower than the current card.
-    
-        win: 100 points
 
-        loser: -75 points
-
-    Methods:
-        start_game: Draw inatial card. Display_output.
-        return points
         
         get_input: gets 'is_playing' and 'choice' from user.
             return: is_playing
@@ -50,7 +43,6 @@ class Director:
         self.points = self.initial_stake
         self.is_playing = True
         self.choice = ''
-        self.bonus = 0.20 #20% of the total points
         
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -89,8 +81,9 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-
-        self.choice = input('Higher or lower? [h/l] ')
+        self.choice = input('Higher or lower? [h/l] ').lower()
+        while self.choice != "h" and self.choice != "l":
+            self.choice = input('Invalid choice. Higher or lower? [h/l] ').lower()
 
     def display_next_card(self):
         """Gets new card from card object
@@ -102,24 +95,30 @@ class Director:
         print(f'Next card was: {self.next_value}')
     
     def calculate_points(self):
-        """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong.
-        
-        Arguments: 
-            self (Director): an instance of Director """
- 
-        if self.value > self.next_value and self.choice == 'h':
-            self.points = self.points + 100
-            return True
-
-        if self.value < self.next_value and self.choice == 'l':
-            self.points = self.points - 75
-            return True
+        """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong."""
 
         '''display_output: displays new card, displays updated points.'''
         """Arguments: 
             self (Director): an instance of Director """
-        
+        if self.choice == "h":
+            if self.next_value > self.value:
+                self.points += 100
+            else:
+                self.points -= 75
+        elif self.choice == "l":
+            if self.next_value < self.value:
+                self.points += 100
+            else:
+                self.points -=75
+
+
     def display_output(self):
+        """display_output: displays updated points, asks if playing again, resets value to current,value (so next round will start out using previous rounds new card)
+        
+        Arguments: 
+            self (Director): an instance of Director"""
+        
+
         print(f'Your score is: {self.points}')
         play_again = input('Play again? [y/n] ').lower()
         while play_again != "y" and play_again != "n":
@@ -133,12 +132,4 @@ class Director:
         if play_again == 'n':
             self.is_playing = False
             return
-    #def bonus_points(self):
-        '''Add 20 percents bonus points when actual points is equivalent or equal to 1000
-        Arguments:
-            self(Director): an instance of Director
         
-            '''
-        #if (self.points >= 1000):
-           # print ("You reached over 1000 points, get additional 20 percents on each win")
-           # self.points = 
