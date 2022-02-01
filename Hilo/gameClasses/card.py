@@ -19,11 +19,7 @@ class Card:
         """Constructs a new instance of Card with a value attribute.
         
         Args:
-<<<<<<< HEAD
             self (Card): An instance of Die."""
-=======
-            self (Card): An instance of Card."""
->>>>>>> d1a2525b280ba4319b41d9e422bff95cbac7cc3a
 
         self.value = 0
 
@@ -32,11 +28,7 @@ class Card:
         """Generates a new random value.
         
         Args:
-<<<<<<< HEAD
             self (Card): An instance of Die."""
-=======
-            self (Card): An instance of Card."""
->>>>>>> d1a2525b280ba4319b41d9e422bff95cbac7cc3a
 
         self.value = random.randint(1, 13)
         return self.value
